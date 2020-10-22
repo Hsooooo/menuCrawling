@@ -10,7 +10,7 @@ public class Main {
 		Crawlling craw = new Crawlling();
 		System.out.println("tt");
 		try {
-			craw.getNutrition("블루베리 베이글", "food");
+			craw.getNutrition("나이트로 콜드 브루", "drink");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

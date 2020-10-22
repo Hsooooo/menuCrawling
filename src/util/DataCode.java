@@ -7,4 +7,5 @@ public class DataCode {
 	public static final String TRANS_FAT = "trans_fat";
 	public static final String SUGARS	 = "sugars";
 	public static final String NATRIUM	 = "natrium";
+	public static final String CAFFEINE  = "caffeine";
 }

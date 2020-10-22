@@ -6,6 +6,8 @@ public class NutritionModel {
 	private String protein;
 	private String sugars;
 	private String natrium;
+	private String caffeine;
+	
 	public String getKcal() {
 		return kcal;
 	}
@@ -36,11 +38,20 @@ public class NutritionModel {
 	public void setNatrium(String natrium) {
 		this.natrium = natrium;
 	}
+	
+	
+	public String getCaffeine() {
+		return caffeine;
+	}
+	public void setCaffeine(String caffeine) {
+		this.caffeine = caffeine;
+	}
 	@Override
 	public String toString() {
 		return "NutritionModel [kcal=" + kcal + ", saturatedFat=" + saturatedFat + ", protein=" + protein + ", sugars="
-				+ sugars + ", natrium=" + natrium + "]";
+				+ sugars + ", natrium=" + natrium + ", caffeine=" + caffeine + "]";
 	}
+	
 	
 	
 	

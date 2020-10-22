@@ -30,6 +30,7 @@ public class Crawlling {
 			typeUrl2 = "/food_view.do";
 		}else if(cateType.equals("drink")) {
 			typeUrl = "/drink_list.do";
+			typeUrl2 = "/drink_view.do";
 		}
 		fullUrl = url + typeUrl;
 		ChromeDriver driver = null;
@@ -103,6 +104,10 @@ public class Crawlling {
 	        		}else if(StringUtils.contains(dtText, "나트륨")) {
 	        			nutritionMap.put(DataCode.NATRIUM, ddText);
 	        			nutritionModel.setNatrium(ddText);
+	        		//나트륨	
+	        		}else if(StringUtils.contains(dtText, "카페인")) {
+	        			nutritionMap.put(DataCode.CAFFEINE, ddText);
+	        			nutritionModel.setCaffeine(ddText);
 	        		}
 	        		
 	        	}
