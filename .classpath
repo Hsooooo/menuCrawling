@@ -11,5 +11,7 @@
 	<classpathentry kind="lib" path="lib/guava-25.0-jre.jar"/>
 	<classpathentry kind="lib" path="lib/okhttp-3.11.0.jar"/>
 	<classpathentry kind="lib" path="lib/okio-1.14.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections4-4.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -3,8 +3,11 @@ package crawling;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +15,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import dto.MenuInfoDto;
+import model.NutritionModel;
 import util.DataCode;
 
 public class Crawlling {
@@ -64,17 +68,47 @@ public class Crawlling {
 	        	}
 	        }
 	        
-	        
+	        Map<String, String> nutritionMap = new HashMap<String, String>();
+	        NutritionModel nutritionModel = new NutritionModel();
 	        if(menuDto == null) {
 	        	System.out.println("검색 결과 없음");
 	        }else {
+	        	
+	        	
 	        	driver.get(menuDto.getNutritionInfoUrl());
 	        	Thread.sleep(2000);
 	        	WebElement ele = driver.findElement(By.cssSelector("div.product_info_content"));
 	        	List<WebElement> eleList = ele.findElements(By.tagName("li"));
 	        	for(WebElement el : eleList) {
-	        		System.out.println(el.findElement(By.className(DataCode.CAROLY_STR)).getText());
+	        		String dtText = el.findElement(By.tagName("dt")).getText();
+	        		String ddText = el.findElement(By.tagName("dd")).getText();
+	        		
+	        		//칼로리
+	        		if(StringUtils.contains(dtText, "kcal")) {
+	        			nutritionMap.put(DataCode.CAROLY_STR, ddText);
+	        			nutritionModel.setKcal(ddText);
+	        		//포화지방	
+	        		}else if(StringUtils.contains(dtText, "포화지방")) {
+	        			nutritionMap.put(DataCode.SATURATED_FAT_STR, ddText);
+	        			nutritionModel.setSaturatedFat(ddText);
+	        		//단백질	
+	        		}else if(StringUtils.contains(dtText, "단백질")) {
+	        			nutritionMap.put(DataCode.PROTEIN_STR, ddText);
+	        			nutritionModel.setProtein(ddText);
+	        		//당류	
+	        		}else if(StringUtils.contains(dtText, "당류")) {
+	        			nutritionMap.put(DataCode.SUGARS, ddText);
+	        			nutritionModel.setSugars(ddText);
+	        		//나트륨	
+	        		}else if(StringUtils.contains(dtText, "나트륨")) {
+	        			nutritionMap.put(DataCode.NATRIUM, ddText);
+	        			nutritionModel.setNatrium(ddText);
+	        		}
+	        		
 	        	}
+	        	
+	        	System.out.println(nutritionMap.toString());
+	        	System.out.println(nutritionModel.toString());
 	        }
 	        
 		}catch(Exception e) {
